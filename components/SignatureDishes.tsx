@@ -13,19 +13,19 @@ const dishes = [
     src: "/images/plate-3-circle.png",
     title: "Avocado & Poached Egg",
     description: "Sourdough, whipped avocado, poached egg, cherry tomato, toasted seeds.",
-    spin: 360,
+    spin: 14,
   },
   {
     src: "/images/plate-2-circle.png",
     title: "Grilled Chicken & Rice",
     description: "Herb-marinated chicken, jasmine rice, garden salad.",
-    spin: -360,
+    spin: -14,
   },
   {
     src: "/images/plate-1-circle.png",
     title: "Berry French Toast",
     description: "Brioche, mascarpone, strawberries, blueberries, maple.",
-    spin: 360,
+    spin: 14,
   },
 ];
 

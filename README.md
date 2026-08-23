@@ -12,31 +12,19 @@ npm run dev
 
 ## Photos in place today
 
-| File                                 | Used in                                    |
-| ------------------------------------- | ------------------------------------------- |
-| `public/images/The-HAN-Hero.png`      | Hero background + Philosophy + Gallery (three different crops of the same real interior shot) |
-| `public/images/The-Han-Product.png`   | Signature-dish pinned reveal + Gallery close-up crop |
+| File                                    | Used in                                                    |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| `public/images/The-HAN-Hero.png`         | Hero background + Philosophy + Gallery (three different crops of the same real interior shot) |
+| `public/images/The-han-hero2.png`        | Second hero layer — curtain-reveals over the interior on scroll (`components/Hero.tsx`) |
+| `public/images/The-han-storefront.png`   | Gallery tile (real shopfront photo, independent of the hero) |
+| `public/images/TheHanLogo.png`           | Nav + footer brand mark, and the favicon (`app/icon.png`, generated from it) |
+| `public/images/plate-1/2/3.png`          | Source photos for the Signature Plates section              |
+| `public/images/plate-1/2/3-circle.png`   | Pre-cropped square derivatives of the above, tightly bounding just the plate (no marble) for the circular display — see `components/SignatureDishes.tsx` |
+| `public/images/The-Han-Product.png`      | Gallery close-up crop                                        |
 
-## Two assets still pending
-
-These are referenced in code but the files aren't in the repo yet. Everything
-degrades gracefully in their absence (checked via `lib/imageMeta.ts` at build
-time, no broken images, no console errors) — the moment you add them and
-push, the site picks them up automatically on the next deploy:
-
-- **`public/images/The-han-storefront.png`** — once present, the hero
-  automatically crossfades from the interior shot into this storefront photo
-  as the visitor scrolls (see `components/Hero.tsx`), and the Gallery gains a
-  third tile for it. Keep the illuminated "The HAN" sign fully in frame —
-  the default crop (`objectPosition="center 30%"`) assumes the sign sits in
-  the upper portion of the photo; adjust that value if not.
-- **`public/images/TheHanLogo.png`** — once present, it replaces the text
-  wordmark in the nav and footer (`components/Nav.tsx`, `components/Footer.tsx`).
-  Real width/height are read directly from the PNG at build time
-  (`lib/imageMeta.ts`), so the aspect ratio is always preserved automatically
-  — no need to tell us its dimensions. Once it's in, also tell us and we'll
-  set it as the favicon/app icon too (that needs a manual crop decision
-  depending on whether the file is a wide wordmark or a square mark).
+`lib/imageMeta.ts` checks at build time whether the hero2/logo files exist and
+degrades gracefully if not (plain single-image hero, text wordmark) — nothing
+breaks if either is ever removed.
 
 ## Editing text, hours, address
 

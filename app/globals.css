@@ -27,6 +27,17 @@ body {
   color: #f7f2e7;
 }
 
+:focus-visible {
+  outline: 2px solid #b08d57;
+  outline-offset: 3px;
+}
+
+.texture-grain {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>');
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
 .underline-grow {
   position: relative;
 }

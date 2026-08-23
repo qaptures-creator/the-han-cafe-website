@@ -1,6 +1,7 @@
 # The HAN — website
 
-Next.js + Tailwind + Framer Motion + Lenis. Cinematic scroll-driven marketing site.
+Next.js (App Router) + Tailwind + Framer Motion + Lenis. A premium, editorial
+cinematic marketing site with scroll-driven reveals and a scroll-linked hero.
 
 ## Run locally
 
@@ -9,40 +10,33 @@ npm install
 npm run dev
 ```
 
-## Adding your own photos
+## Photos in place today
 
-Every photo on the site lives in `public/images/` and is referenced from one
-of these components:
+| File                                 | Used in                                    |
+| ------------------------------------- | ------------------------------------------- |
+| `public/images/The-HAN-Hero.png`      | Hero background + Philosophy + Gallery (three different crops of the same real interior shot) |
+| `public/images/The-Han-Product.png`   | Signature-dish pinned reveal + Gallery close-up crop |
 
-| File                                  | Used in                          | Component                       |
-| -------------------------------------- | --------------------------------- | -------------------------------- |
-| `public/images/The-HAN-Hero.png`       | Full-bleed hero background        | `components/Hero.tsx`            |
-| `public/images/The-Han-Product.png`    | Pinned scroll-reveal of the signature dish | `components/ProductReveal.tsx` |
-| `public/images/interior-source.png`    | About/Philosophy section          | `components/Philosophy.tsx`      |
-| `public/images/coffee-pour.jpg`        | Gallery                           | `components/Gallery.tsx`         |
-| `public/images/pastry-counter.jpg`     | Gallery                           | `components/Gallery.tsx`         |
-| `public/images/seating-detail.jpg`     | Gallery                           | `components/Gallery.tsx`         |
-| `public/images/exterior.jpg`           | Gallery                           | `components/Gallery.tsx`         |
-| `public/images/food-detail.jpg`        | Gallery                           | `components/Gallery.tsx`         |
+## Two assets still pending
 
-The hero and product shots are real photography already in place. The rest
-are placeholder slots — each renders as a plain warm block with a small
-label naming what goes there, so nothing looks broken until you add the
-real file.
+These are referenced in code but the files aren't in the repo yet. Everything
+degrades gracefully in their absence (checked via `lib/imageMeta.ts` at build
+time, no broken images, no console errors) — the moment you add them and
+push, the site picks them up automatically on the next deploy:
 
-Steps to add a photo to one of the remaining placeholder slots:
-
-1. Export/save the photo at a decent size (1000px+ on the long edge). JPG
-   or PNG both work.
-2. Drop the file into `public/images/`, named exactly as in the table above
-   (e.g. `coffee-pour.jpg`).
-3. In `components/Gallery.tsx`, find the matching `<Tile ... />` and change
-   `label="..."` to `src="/images/your-file.jpg"`.
-4. Commit and push — Railway redeploys automatically.
-
-To replace the hero or product image later, just overwrite the same
-filename in `public/images/` (or point the `src` in `Hero.tsx` /
-`ProductReveal.tsx` at a new filename) and push.
+- **`public/images/The-han-storefront.png`** — once present, the hero
+  automatically crossfades from the interior shot into this storefront photo
+  as the visitor scrolls (see `components/Hero.tsx`), and the Gallery gains a
+  third tile for it. Keep the illuminated "The HAN" sign fully in frame —
+  the default crop (`objectPosition="center 30%"`) assumes the sign sits in
+  the upper portion of the photo; adjust that value if not.
+- **`public/images/TheHanLogo.png`** — once present, it replaces the text
+  wordmark in the nav and footer (`components/Nav.tsx`, `components/Footer.tsx`).
+  Real width/height are read directly from the PNG at build time
+  (`lib/imageMeta.ts`), so the aspect ratio is always preserved automatically
+  — no need to tell us its dimensions. Once it's in, also tell us and we'll
+  set it as the favicon/app icon too (that needs a manual crop decision
+  depending on whether the file is a wide wordmark or a square mark).
 
 ## Editing text, hours, address
 
@@ -55,7 +49,26 @@ One thing is still marked `TODO` there and needs confirming:
 - Phone number (not shown on the source listing — the Visit section hides
   the phone row entirely until this is filled in).
 
+## Image quality notes
+
+- All photos render through `components/Photo.tsx`, a thin `next/image`
+  wrapper — `sizes` on every usage matches the slot's real rendered width
+  (the previous blur was a hero `sizes` that under-reported the render width
+  as 50vw when it's actually 100vw, so Next served a half-resolution file
+  and stretched it).
+- `next.config.mjs` explicitly serves AVIF/WebP and allows quality 90 for
+  hero-tier photography, 85 elsewhere.
+- `The-HAN-Hero.png`'s source was only 1672×941 — upscaled to 2400×1351 with
+  Lanczos resampling to give the optimizer more headroom on large/Retina
+  screens. This smooths the render pipeline but isn't a substitute for a
+  genuinely higher-resolution export; replace it with the original
+  camera/phone export if you have one for the sharpest possible result on
+  large monitors.
+
 ## Deploying
 
 Deployed as a Railway service (Node build: `npm run build`, start:
-`npm run start`, which binds to Railway's `$PORT`).
+`npm run start`, which binds to Railway's `$PORT`). Auto-deploy-on-push
+needs the Railway GitHub App installed on this repo
+(https://github.com/apps/railway) — until then, pushes need a manual
+redeploy trigger from Railway's side.

@@ -4,8 +4,9 @@ import { menuHighlights } from "@/lib/content";
 
 export function MenuHighlights() {
   return (
-    <section id="menu" className="bg-ink px-6 py-28 text-cream md:px-10 md:py-40">
-      <div className="mx-auto max-w-4xl">
+    <section id="menu" className="relative bg-ink px-6 py-28 text-cream md:px-10 md:py-40">
+      <div aria-hidden className="texture-grain absolute inset-0" />
+      <div className="relative mx-auto max-w-4xl">
         <Reveal>
           <p className="mb-5 text-sm uppercase tracking-[0.28em] text-cream/50">
             On the Table
@@ -25,10 +26,10 @@ export function MenuHighlights() {
                   aria-hidden
                   className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-cream/[0.04] transition-[width] duration-700 ease-cinematic group-hover:w-full"
                 />
-                <span className="relative z-10 font-display text-sm italic text-cream/40 md:w-12">
+                <span className="relative z-10 font-display text-sm italic text-cream/40 transition-colors duration-500 group-hover:text-brass md:w-12">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="relative z-10 flex-1">
+                <div className="relative z-10 flex-1 transition-transform duration-700 ease-cinematic md:group-hover:translate-x-2">
                   <div className="flex flex-wrap items-baseline gap-3">
                     <h3 className="font-display text-2xl font-light md:text-3xl">
                       {item.title}
@@ -41,6 +42,12 @@ export function MenuHighlights() {
                     {item.description}
                   </p>
                 </div>
+                <span
+                  aria-hidden
+                  className="relative z-10 hidden font-display text-xl italic text-brass opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block"
+                >
+                  →
+                </span>
               </div>
             </Reveal>
           ))}

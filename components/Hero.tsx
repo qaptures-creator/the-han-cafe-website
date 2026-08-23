@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { StaggerHeading } from "@/components/StaggerHeading";
 import { Photo } from "@/components/Photo";
+import { HeroPlates } from "@/components/HeroPlates";
 import { business } from "@/lib/content";
 import { useReducedMotion } from "@/lib/useReducedMotion";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 /**
  * Opens on the interior hero exactly as before. On scroll, the hero pins
@@ -18,12 +20,21 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
  */
 export function Hero({ hasHero2 }: { hasHero2: boolean }) {
   const reduced = useReducedMotion();
+  const isMobile = useIsMobile();
   const outerRef = useRef<HTMLElement>(null);
   const showReveal = hasHero2 && !reduced;
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
     offset: ["start start", "end end"],
+  });
+
+  // Separate progress for the plate rotation: 0 right as the sticky pin
+  // releases (the hero starts actually moving out of the viewport), 1 once
+  // it has fully scrolled away. Independent of the reveal timing above.
+  const { scrollYProgress: leaveProgress } = useScroll({
+    target: outerRef,
+    offset: ["end end", "end start"],
   });
 
   const contentOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
@@ -61,14 +72,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
             className="absolute inset-0"
             style={{ clipPath: storefrontClipPath, scale: storefrontScale }}
           >
-            <Photo
-              src="/images/The-han-hero2.png"
-              alt={`Signature dishes at ${business.name}`}
-              sizes="100vw"
-              quality={90}
-              priority
-              objectPosition="center 55%"
-            />
+            <HeroPlates leaveProgress={leaveProgress} reduced={reduced} isMobile={isMobile} />
           </motion.div>
         )}
 

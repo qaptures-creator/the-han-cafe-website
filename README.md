@@ -14,35 +14,35 @@ npm run dev
 Every photo on the site lives in `public/images/` and is referenced from one
 of these components:
 
-| File to add                          | Used in              | Component               |
-| ------------------------------------ | --------------------- | ------------------------ |
-| `public/images/hero-room.jpg`        | Full-bleed hero background | `components/Hero.tsx` |
-| `public/images/coffee-pour.jpg`      | Gallery                | `components/Gallery.tsx` |
-| `public/images/pastry-counter.jpg`   | Gallery                | `components/Gallery.tsx` |
-| `public/images/seating-detail.jpg`   | Gallery                | `components/Gallery.tsx` |
-| `public/images/exterior.jpg`         | Gallery                | `components/Gallery.tsx` |
+| File                                  | Used in                          | Component                       |
+| -------------------------------------- | --------------------------------- | -------------------------------- |
+| `public/images/The-HAN-Hero.png`       | Full-bleed hero background        | `components/Hero.tsx`            |
+| `public/images/The-Han-Product.png`    | Pinned scroll-reveal of the signature dish | `components/ProductReveal.tsx` |
+| `public/images/interior-source.png`    | About/Philosophy section          | `components/Philosophy.tsx`      |
+| `public/images/coffee-pour.jpg`        | Gallery                           | `components/Gallery.tsx`         |
+| `public/images/pastry-counter.jpg`     | Gallery                           | `components/Gallery.tsx`         |
+| `public/images/seating-detail.jpg`     | Gallery                           | `components/Gallery.tsx`         |
+| `public/images/exterior.jpg`           | Gallery                           | `components/Gallery.tsx`         |
+| `public/images/food-detail.jpg`        | Gallery                           | `components/Gallery.tsx`         |
 
-`interior-source.png` and `avocado-toast-source.png` are already in place —
-they're cropped from the Google Business listing screenshot as temporary
-stand-ins for the About section and gallery. Swap them for real photography
-(from a camera, not a screenshot) whenever you have it — they'll be visibly
-soft at their current display size since they started as thumbnails.
+The hero and product shots are real photography already in place. The rest
+are placeholder slots — each renders as a plain warm block with a small
+label naming what goes there, so nothing looks broken until you add the
+real file.
 
-Steps to add a photo:
+Steps to add a photo to one of the remaining placeholder slots:
 
-1. Export/save the photo at a decent size (at least 1600px on the long edge
-   for the hero, 1000px for gallery tiles). JPG or PNG both work.
+1. Export/save the photo at a decent size (1000px+ on the long edge). JPG
+   or PNG both work.
 2. Drop the file into `public/images/`, named exactly as in the table above
-   (e.g. `hero-room.jpg`).
+   (e.g. `coffee-pour.jpg`).
 3. In `components/Gallery.tsx`, find the matching `<Tile ... />` and change
-   `label="..."` to `src="/images/your-file.jpg"` — see how the signature
-   dish tile is already wired up as an example.
-4. For the hero image, edit `components/Hero.tsx` and update the `src` prop
-   on the `<ImageSlot>` if you rename the file.
-5. Commit and push — Railway redeploys automatically.
+   `label="..."` to `src="/images/your-file.jpg"`.
+4. Commit and push — Railway redeploys automatically.
 
-Until a slot has a real photo, it renders as a plain warm placeholder block
-with a small label naming what goes there, so nothing looks broken.
+To replace the hero or product image later, just overwrite the same
+filename in `public/images/` (or point the `src` in `Hero.tsx` /
+`ProductReveal.tsx` at a new filename) and push.
 
 ## Editing text, hours, address
 

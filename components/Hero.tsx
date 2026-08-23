@@ -14,7 +14,8 @@ export function Hero() {
     <section id="top" className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink">
       <Parallax strength={70} className="absolute inset-0 h-[120%]">
         <ImageSlot
-          alt={`Interior of ${business.name}`}
+          src="/images/The-HAN-Hero.png"
+          alt={`Interior of ${business.name} — arched limewash wall and brass pendant lights`}
           label="hero-room.jpg — wide interior or exterior shot"
           className="h-full w-full"
           priority

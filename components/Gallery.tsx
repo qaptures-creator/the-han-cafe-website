@@ -49,9 +49,8 @@ export function Gallery() {
         <div className="grid grid-cols-6 gap-4 md:gap-6">
           <Reveal className="col-span-6 md:col-span-3" y={36}>
             <Tile
-              src="/images/avocado-toast-source.png"
-              alt={`Avocado and poached egg on sourdough at ${business.name}`}
-              label="signature-dish.jpg"
+              alt={`A plated dish at ${business.name}`}
+              label="food-detail.jpg — a different plated dish or close-up"
               className="aspect-[4/5]"
             />
           </Reveal>

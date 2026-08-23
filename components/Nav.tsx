@@ -43,23 +43,19 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // The mark is dark line art on a transparent ground, drawn for light
-  // backgrounds — fine once the nav goes solid (bg-cream), but needs a
-  // light backing to stay legible over the hero photo before that.
+  // One fixed-size circular logo box, identical in both header states —
+  // no wrapper background, no conditional padding, nothing that resizes
+  // or shifts it when `solid` toggles. Only the header around it changes.
   const brandMark =
     hasLogo && logoDimensions ? (
-      <span
-        className={`inline-flex items-center rounded-lg transition-colors duration-500 ${
-          solid ? "bg-transparent px-0 py-0" : "bg-cream/95 px-2.5 py-1.5"
-        }`}
-      >
+      <span className="relative block h-11 w-11 shrink-0 overflow-hidden rounded-full md:h-12 md:w-12">
         <Image
           src="/images/TheHanLogo.png"
           alt={`${business.name} logo`}
-          width={logoDimensions.width}
-          height={logoDimensions.height}
+          fill
           priority
-          className="h-9 w-auto md:h-10"
+          sizes="48px"
+          className="object-contain"
         />
       </span>
     ) : (

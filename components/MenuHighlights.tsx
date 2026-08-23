@@ -26,7 +26,7 @@ export function MenuHighlights() {
                   aria-hidden
                   className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-cream/[0.04] transition-[width] duration-700 ease-cinematic group-hover:w-full"
                 />
-                <span className="relative z-10 font-display text-sm italic text-cream/40 transition-colors duration-500 group-hover:text-brass md:w-12">
+                <span className="relative z-10 font-display text-sm italic text-cream/60 transition-colors duration-500 group-hover:text-brass md:w-12">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="relative z-10 flex-1 transition-transform duration-700 ease-cinematic md:group-hover:translate-x-2">

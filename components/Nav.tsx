@@ -171,7 +171,7 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
               target="_blank"
               rel="noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-8 inline-block text-sm uppercase tracking-[0.2em] text-brass"
+              className="mt-8 inline-block text-sm uppercase tracking-[0.2em] text-bronze"
             >
               Get Directions →
             </a>

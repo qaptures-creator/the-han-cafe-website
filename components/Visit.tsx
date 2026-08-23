@@ -26,7 +26,7 @@ export function Visit() {
           <Reveal className="border-b border-cream/15 p-8 md:border-b-0 md:border-r md:p-14">
             <div className="space-y-10">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/40">Address</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Address</p>
                 <p className="mt-3 text-xl font-light">
                   {business.address.line1}
                   <br />
@@ -43,13 +43,13 @@ export function Visit() {
               </div>
 
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/40">Hours</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Hours</p>
                 <HoursList />
               </div>
 
               {business.phone && (
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-cream/40">Phone</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Phone</p>
                   <a
                     href={`tel:${business.phone}`}
                     className="underline-grow mt-2 inline-block text-lg font-light"

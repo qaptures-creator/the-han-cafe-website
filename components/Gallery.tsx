@@ -50,7 +50,7 @@ export function Gallery({ hasStorefront }: { hasStorefront: boolean }) {
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-center gap-4 md:mb-20">
           <span className="h-px w-10 bg-stone/50" />
-          <p className="text-sm uppercase tracking-[0.28em] text-stone">A Look Inside</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-ink/60">A Look Inside</p>
         </div>
 
         <StaggerHeading

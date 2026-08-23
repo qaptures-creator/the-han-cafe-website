@@ -22,7 +22,7 @@ export function ProductReveal() {
     return (
       <section className="bg-cream px-6 py-28 md:px-10">
         <div className="mx-auto max-w-md text-center">
-          <p className="mb-6 text-sm uppercase tracking-[0.28em] text-stone">
+          <p className="mb-6 text-sm uppercase tracking-[0.28em] text-ink/60">
             Signature — No. 01
           </p>
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
@@ -32,9 +32,9 @@ export function ProductReveal() {
               sizes="360px"
             />
           </div>
-          <h3 className="mt-8 font-display text-3xl font-light italic text-ink">
+          <h2 className="mt-8 font-display text-3xl font-light italic text-ink">
             {dish.title}
-          </h3>
+          </h2>
           <p className="mx-auto mt-3 max-w-sm text-sm text-ink/60">
             {dish.description}
           </p>
@@ -64,7 +64,7 @@ function PinnedReveal() {
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-8 bg-stone/50" />
-            <p className="text-sm uppercase tracking-[0.28em] text-stone">
+            <p className="text-sm uppercase tracking-[0.28em] text-ink/60">
               Signature — No. 01
             </p>
             <span className="h-px w-8 bg-stone/50" />
@@ -86,9 +86,9 @@ function PinnedReveal() {
           style={{ opacity: captionOpacity, y: captionY }}
           className="flex flex-col items-center text-center"
         >
-          <h3 className="font-display text-2xl font-light italic text-ink md:text-3xl">
+          <h2 className="font-display text-2xl font-light italic text-ink md:text-3xl">
             {dish.title}
-          </h3>
+          </h2>
           <span className="mt-3 h-px w-8 bg-brass/60" />
           <p className="mt-3 max-w-sm text-sm text-ink/60">{dish.description}</p>
         </motion.div>

@@ -12,7 +12,7 @@ export function Philosophy() {
           <Reveal>
             <div className="mb-6 flex items-center gap-4">
               <span className="h-px w-10 bg-stone/50" />
-              <p className="text-sm uppercase tracking-[0.28em] text-stone">
+              <p className="text-sm uppercase tracking-[0.28em] text-ink/60">
                 {philosophy.eyebrow}
               </p>
             </div>
@@ -31,10 +31,10 @@ export function Philosophy() {
 
           <Reveal delay={0.25}>
             <div className="mt-10 flex items-center gap-4 border-t border-ink/10 pt-6">
-              <span className="font-display text-lg italic text-brass">
+              <span className="font-display text-lg italic text-bronze">
                 {business.rating.toFixed(1)}
               </span>
-              <span className="text-sm tracking-[0.05em] text-ink/50">
+              <span className="text-sm tracking-[0.05em] text-ink/70">
                 on Google · {business.reviewCount} reviews
               </span>
             </div>

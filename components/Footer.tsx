@@ -35,7 +35,7 @@ export function Footer({ hasLogo, logoDimensions }: FooterProps) {
           </a>
         </div>
 
-        <p className="mt-8 text-xs text-ink/40">
+        <p className="mt-8 text-xs text-ink/65">
           © {new Date().getFullYear()} {business.name}. All rights reserved.
         </p>
       </div>

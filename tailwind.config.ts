@@ -10,6 +10,9 @@ const config: Config = {
         sand: "#e8dfc9",
         stone: "#948972",
         brass: "#b08d57",
+        // Darkened brass for text on light (cream) backgrounds — plain
+        // brass fails WCAG AA contrast there (2.77:1); this passes (5.6:1).
+        bronze: "#735d3a",
         moss: "#54604a",
       },
       fontFamily: {

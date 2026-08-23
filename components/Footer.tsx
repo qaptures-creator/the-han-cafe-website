@@ -13,11 +13,11 @@ export function Footer({ hasLogo, logoDimensions }: FooterProps) {
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           {hasLogo && logoDimensions ? (
             <Image
-              src="/images/TheHanLogo.png"
+              src="/images/The-han-logo.png"
               alt={`${business.name} logo`}
               width={logoDimensions.width}
               height={logoDimensions.height}
-              className="h-9 w-auto"
+              className="h-9 w-auto object-contain"
             />
           ) : (
             <p className="font-display text-base italic text-ink">{business.name}</p>

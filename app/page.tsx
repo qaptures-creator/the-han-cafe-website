@@ -11,7 +11,7 @@ import { assetExists, getPngDimensions } from "@/lib/imageMeta";
 export default function Home() {
   const hasStorefront = assetExists("images/The-han-storefront.png");
   const hasHero2 = assetExists("images/The-han-hero2.png");
-  const logoDimensions = getPngDimensions("images/TheHanLogo.png");
+  const logoDimensions = getPngDimensions("images/The-han-logo.png");
   const hasLogo = logoDimensions !== null;
 
   return (

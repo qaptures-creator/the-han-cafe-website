@@ -17,7 +17,7 @@ npm run dev
 | `public/images/The-HAN-Hero.png`         | Hero background + Philosophy + Gallery (three different crops of the same real interior shot) |
 | `public/images/The-han-hero2.png`        | Second hero layer — curtain-reveals over the interior on scroll (`components/Hero.tsx`) |
 | `public/images/The-han-storefront.png`   | Gallery tile (real shopfront photo, independent of the hero) |
-| `public/images/TheHanLogo.png`           | Nav + footer brand mark, and the favicon (`app/icon.png`, generated from it) |
+| `public/images/The-han-logo.png`         | Nav + footer brand mark — flat wordmark, transparent background, shown via `object-fit: contain` at a fixed height (no cropping, no background chip) |
 | `public/images/plate-1/2/3.png`          | Source photos for the Signature Plates section              |
 | `public/images/plate-1/2/3-circle.png`   | Pre-cropped square derivatives of the above, tightly bounding just the plate (no marble) for the circular display — see `components/SignatureDishes.tsx` |
 | `public/images/The-Han-Product.png`      | Gallery close-up crop                                        |

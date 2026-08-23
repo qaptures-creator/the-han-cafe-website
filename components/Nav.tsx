@@ -43,21 +43,21 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // One fixed-size circular logo box, identical in both header states —
-  // no wrapper background, no conditional padding, nothing that resizes
+  // One fixed-height logo, identical in both header states — no wrapper
+  // background, no clipping, no conditional sizing, nothing that resizes
   // or shifts it when `solid` toggles. Only the header around it changes.
+  // Height is fixed and width follows the source image's real aspect
+  // ratio (object-contain), so the wordmark is never cropped or distorted.
   const brandMark =
     hasLogo && logoDimensions ? (
-      <span className="relative block h-11 w-11 shrink-0 overflow-hidden rounded-full md:h-12 md:w-12">
-        <Image
-          src="/images/TheHanLogo.png"
-          alt={`${business.name} logo`}
-          fill
-          priority
-          sizes="48px"
-          className="object-contain"
-        />
-      </span>
+      <Image
+        src="/images/The-han-logo.png"
+        alt={`${business.name} logo`}
+        width={logoDimensions.width}
+        height={logoDimensions.height}
+        priority
+        className="h-11 w-auto shrink-0 object-contain md:h-12"
+      />
     ) : (
       <span className="font-display text-lg tracking-[0.15em] text-ink">
         {business.name.toUpperCase()}

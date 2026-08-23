@@ -43,16 +43,25 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // The mark is dark line art on a transparent ground, drawn for light
+  // backgrounds — fine once the nav goes solid (bg-cream), but needs a
+  // light backing to stay legible over the hero photo before that.
   const brandMark =
     hasLogo && logoDimensions ? (
-      <Image
-        src="/images/TheHanLogo.png"
-        alt={`${business.name} logo`}
-        width={logoDimensions.width}
-        height={logoDimensions.height}
-        priority
-        className="h-8 w-auto md:h-9"
-      />
+      <span
+        className={`inline-flex items-center rounded-lg transition-colors duration-500 ${
+          solid ? "bg-transparent px-0 py-0" : "bg-cream/95 px-2.5 py-1.5"
+        }`}
+      >
+        <Image
+          src="/images/TheHanLogo.png"
+          alt={`${business.name} logo`}
+          width={logoDimensions.width}
+          height={logoDimensions.height}
+          priority
+          className="h-9 w-auto md:h-10"
+        />
+      </span>
     ) : (
       <span className="font-display text-lg tracking-[0.15em] text-ink">
         {business.name.toUpperCase()}

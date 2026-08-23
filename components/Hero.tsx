@@ -61,14 +61,38 @@ export function Hero({ hasStorefront }: { hasStorefront: boolean }) {
             className="absolute inset-0"
             style={{ clipPath: storefrontClipPath, scale: storefrontScale }}
           >
-            <Photo
-              src="/images/The-han-storefront.png"
-              alt={`${business.name} storefront with illuminated sign on Farnham Road`}
-              sizes="100vw"
-              quality={90}
-              priority
-              objectPositionClassName="object-[center_20%] md:object-[center_14%]"
-            />
+            {/* The source photo is landscape (4:3-ish) — on a tall narrow
+                mobile viewport, object-fit:cover to fill 100svh forces a
+                scale that crops the sign's edges off, no matter the
+                object-position. A separate, tighter portrait crop of the
+                same photo (full sign, tiny margin) fixes it properly. */}
+            <div className="absolute inset-0 hidden md:block">
+              <Photo
+                src="/images/The-han-storefront.png"
+                alt={`${business.name} storefront with illuminated sign on Farnham Road`}
+                sizes="100vw"
+                quality={90}
+                priority
+                objectPositionClassName="object-[center_12%]"
+              />
+            </div>
+            {/* This source is landscape-ish (4:3) at every crop the sign's
+                width allows, and no mobile viewport is wide enough for
+                cover to show the full sign without cutting it off — a
+                hard limit of the source's proportions, not a positioning
+                problem. contain + a matching backdrop keeps the whole
+                sign intact with a small, intentional-looking margin
+                instead of clipping it. */}
+            <div className="absolute inset-0 bg-cream md:hidden">
+              <Photo
+                src="/images/The-han-storefront-mobile.png"
+                alt={`${business.name} storefront with illuminated sign on Farnham Road`}
+                sizes="100vw"
+                quality={90}
+                priority
+                fit="contain"
+              />
+            </div>
           </motion.div>
         )}
 

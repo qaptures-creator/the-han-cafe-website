@@ -15,6 +15,8 @@ type PhotoProps = {
    * framing has to go through Tailwind's object-position utilities instead.
    */
   objectPositionClassName?: string;
+  /** "cover" (default) crops to fill; "contain" shows the whole image, letterboxed. */
+  fit?: "cover" | "contain";
 };
 
 /**
@@ -32,6 +34,7 @@ export function Photo({
   className,
   objectPosition,
   objectPositionClassName,
+  fit = "cover",
 }: PhotoProps) {
   return (
     <Image
@@ -41,7 +44,7 @@ export function Photo({
       priority={priority}
       quality={quality}
       sizes={sizes}
-      className={`object-cover ${objectPositionClassName ?? ""} ${className ?? ""}`}
+      className={`${fit === "contain" ? "object-contain" : "object-cover"} ${objectPositionClassName ?? ""} ${className ?? ""}`}
       style={objectPositionClassName ? undefined : objectPosition ? { objectPosition } : undefined}
     />
   );

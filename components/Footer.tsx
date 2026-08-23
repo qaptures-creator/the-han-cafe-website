@@ -17,7 +17,7 @@ export function Footer({ hasLogo, logoDimensions }: FooterProps) {
               alt={`${business.name} logo`}
               width={logoDimensions.width}
               height={logoDimensions.height}
-              className="h-7 w-auto opacity-90"
+              className="h-9 w-auto"
             />
           ) : (
             <p className="font-display text-base italic text-ink">{business.name}</p>

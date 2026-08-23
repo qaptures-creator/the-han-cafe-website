@@ -8,6 +8,13 @@ type PhotoProps = {
   priority?: boolean;
   className?: string;
   objectPosition?: string;
+  /**
+   * Use instead of `objectPosition` when the crop needs to differ by
+   * breakpoint, e.g. "object-[center_20%] md:object-[center_12%]" — an
+   * inline `style` objectPosition always wins over classes, so responsive
+   * framing has to go through Tailwind's object-position utilities instead.
+   */
+  objectPositionClassName?: string;
 };
 
 /**
@@ -24,6 +31,7 @@ export function Photo({
   priority,
   className,
   objectPosition,
+  objectPositionClassName,
 }: PhotoProps) {
   return (
     <Image
@@ -33,8 +41,8 @@ export function Photo({
       priority={priority}
       quality={quality}
       sizes={sizes}
-      className={`object-cover ${className ?? ""}`}
-      style={objectPosition ? { objectPosition } : undefined}
+      className={`object-cover ${objectPositionClassName ?? ""} ${className ?? ""}`}
+      style={objectPositionClassName ? undefined : objectPosition ? { objectPosition } : undefined}
     />
   );
 }

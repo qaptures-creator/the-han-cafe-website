@@ -42,8 +42,26 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
   const legibilityOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
   const cueOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  const clipInset = useTransform(scrollYProgress, [0.15, 0.75], [100, 0]);
-  const storefrontClipPath = useTransform(clipInset, (v) => `inset(${v}% 0 0 0)`);
+  // Drive a broad, asymmetric curve from below the viewport to just above it.
+  // The extra travel at both ends guarantees the second hero is completely
+  // hidden/revealed, while the shallower mobile amplitude keeps the transition
+  // elegant on narrower screens.
+  const revealCurveY = useTransform(scrollYProgress, [0.15, 0.75], [1.08, -0.08]);
+  const curveAmplitude = isMobile ? 0.032 : 0.055;
+  const revealCurvePath = useTransform(revealCurveY, (y) => {
+    const upperSweep = y - curveAmplitude * 0.72;
+    const lowerSweep = y + curveAmplitude;
+    const rightEdge = y - curveAmplitude * 0.15;
+
+    return [
+      `M 0 ${y}`,
+      `C 0.18 ${upperSweep} 0.38 ${upperSweep} 0.56 ${y + curveAmplitude * 0.22}`,
+      `C 0.72 ${lowerSweep} 0.88 ${y + curveAmplitude * 0.62} 1 ${rightEdge}`,
+      "L 1 1",
+      "L 0 1",
+      "Z",
+    ].join(" ");
+  });
   const storefrontScale = useTransform(scrollYProgress, [0.15, 0.75], [1.05, 1]);
 
   return (
@@ -54,6 +72,20 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
       style={{ height: showReveal ? "190vh" : "100svh" }}
     >
       <div className="sticky top-0 h-[100svh] min-h-[640px] w-full overflow-hidden">
+        {showReveal && (
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            className="pointer-events-none absolute h-0 w-0"
+          >
+            <defs>
+              <clipPath id="hero-reveal-curve" clipPathUnits="objectBoundingBox">
+                <motion.path d={revealCurvePath} />
+              </clipPath>
+            </defs>
+          </svg>
+        )}
+
         {/* Base layer — the interior hero, unchanged */}
         <div className="absolute inset-0">
           <Photo
@@ -70,7 +102,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
         {showReveal && (
           <motion.div
             className="absolute inset-0"
-            style={{ clipPath: storefrontClipPath, scale: storefrontScale }}
+            style={{ clipPath: "url(#hero-reveal-curve)", scale: storefrontScale }}
           >
             <HeroPlates leaveProgress={leaveProgress} reduced={reduced} isMobile={isMobile} />
           </motion.div>

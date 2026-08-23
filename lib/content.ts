@@ -15,15 +15,14 @@ export const business = {
   },
   // TODO: confirm phone number and add here once available.
   phone: "",
-  // TODO: confirm full weekly hours — only "closes 4pm" was visible on the source listing.
   hours: [
-    { day: "Monday", time: "TBC" },
-    { day: "Tuesday", time: "TBC" },
-    { day: "Wednesday", time: "TBC" },
-    { day: "Thursday", time: "TBC" },
-    { day: "Friday", time: "TBC" },
-    { day: "Saturday", time: "TBC" },
-    { day: "Sunday", time: "Closes 4pm" },
+    { day: "Monday", time: "8am–5pm" },
+    { day: "Tuesday", time: "8am–5pm" },
+    { day: "Wednesday", time: "8am–5pm" },
+    { day: "Thursday", time: "8am–5pm" },
+    { day: "Friday", time: "8am–5pm" },
+    { day: "Saturday", time: "8am–5pm" },
+    { day: "Sunday", time: "9am–4pm" },
   ],
   social: {
     instagram: "",

@@ -50,12 +50,10 @@ All business facts (name, tagline, address, hours, phone, menu highlights,
 philosophy copy) live in `lib/content.ts`. Edit that file — the whole site
 reads from it, nothing else needs to change.
 
-Two things are still marked `TODO` there and need confirming:
+One thing is still marked `TODO` there and needs confirming:
 
-- Full weekly opening hours (only "closes 4pm" was visible on the source
-  Google listing).
-- Phone number (not shown on the listing — the Visit section hides the
-  phone row entirely until this is filled in).
+- Phone number (not shown on the source listing — the Visit section hides
+  the phone row entirely until this is filled in).
 
 ## Deploying
 

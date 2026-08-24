@@ -38,6 +38,17 @@ body {
   mix-blend-mode: overlay;
 }
 
+/* Hides the scrollbar on snap-scroll strips (mobile reviews/gallery) while
+   keeping native touch/keyboard scrolling intact. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .underline-grow {
   position: relative;
 }

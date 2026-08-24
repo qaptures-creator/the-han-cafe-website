@@ -4,6 +4,8 @@ import { Philosophy } from "@/components/Philosophy";
 import { SignatureDishes } from "@/components/SignatureDishes";
 import { MenuHighlights } from "@/components/MenuHighlights";
 import { Gallery } from "@/components/Gallery";
+import { GuestReviews } from "@/components/GuestReviews";
+import { CustomerGallery } from "@/components/CustomerGallery";
 import { Visit } from "@/components/Visit";
 import { Footer } from "@/components/Footer";
 import { assetExists, getPngDimensions } from "@/lib/imageMeta";
@@ -23,6 +25,8 @@ export default function Home() {
         <SignatureDishes />
         <MenuHighlights />
         <Gallery hasStorefront={hasStorefront} />
+        <GuestReviews />
+        <CustomerGallery />
         <Visit />
       </main>
       <Footer hasLogo={hasLogo} logoDimensions={logoDimensions} />

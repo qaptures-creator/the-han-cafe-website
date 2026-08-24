@@ -56,7 +56,7 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
         width={logoDimensions.width}
         height={logoDimensions.height}
         priority
-        className="h-11 w-auto shrink-0 object-contain md:h-12"
+        className="h-14 w-auto shrink-0 object-contain md:h-16"
       />
     ) : (
       <span className="font-display text-lg tracking-[0.15em] text-ink">

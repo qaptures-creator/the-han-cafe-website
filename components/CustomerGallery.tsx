@@ -12,34 +12,38 @@ type GuestPhoto = {
   alt: string;
 };
 
-// Photographer names are folded into the alt text (screen-reader
-// accessible) rather than overlaid on the image, so busy food/table shots
-// stay free of on-image text per the design brief. Each entry only
+// No confirmed reviewer name is attached to these yet, so alt text credits
+// "a guest" generically rather than guessing an identity. Each entry only
 // renders once its file actually exists on disk (checked below via
 // `assetExists`) — approved photos can be dropped into
 // /public/images/customer-gallery/ under these exact filenames with no
-// code changes needed. To extend past four, add an entry here and give it
+// code changes needed. To extend past five, add an entry here and give it
 // a slot in the lg: grid in CustomerGallery below.
 const GUEST_PHOTOS: GuestPhoto[] = [
   {
-    key: "turkish-spread",
-    file: "guest-turkish-breakfast-spread-mervay.jpg",
-    alt: `A full Turkish breakfast spread of cheeses, olives, sujuk, simit and eggs at ${business.name}, shared by guest Mervay Kojack`,
+    key: "breakfast-spread",
+    file: "guest-breakfast-spread-experience.webp",
+    alt: `A shared breakfast spread of cheeses, charcuterie, eggs and fresh fruit at ${business.name}, shared by a guest`,
   },
   {
-    key: "chocolate-pancakes",
-    file: "guest-chocolate-pancake-stack-mervay.jpg",
-    alt: `A chocolate pancake stack with fresh berries at ${business.name}, shared by guest Mervay Kojack`,
+    key: "french-toast-berry",
+    file: "guest-french-toast-berry-compote.webp",
+    alt: `Brioche French toast with mixed berries and berry compote at ${business.name}, shared by a guest`,
   },
   {
-    key: "chicken-schnitzel",
-    file: "guest-chicken-schnitzel-tahmina.jpg",
-    alt: `Chicken schnitzel with fries and a side salad at ${business.name}, shared by guest Tahmina`,
+    key: "french-toast-custard",
+    file: "guest-french-toast-custard-crumble.webp",
+    alt: `French toast with custard crumble topping and fresh berries at ${business.name}, shared by a guest`,
   },
   {
-    key: "pancake-poached-egg",
-    file: "guest-pancake-poached-egg-abubakr.jpg",
-    alt: `A pancake stack topped with poached egg and berry compote at ${business.name}, shared by guest Abubakr Bankole`,
+    key: "avocado-toast",
+    file: "guest-avocado-toast.webp",
+    alt: `Avocado and whipped feta on sourdough toast at ${business.name}, shared by a guest`,
+  },
+  {
+    key: "chicken-parmesan",
+    file: "guest-chicken-parmesan-fries.webp",
+    alt: `Chicken parmesan with fries and a side salad at ${business.name}, shared by a guest`,
   },
 ];
 
@@ -81,7 +85,7 @@ function Tile({
 
 /**
  * "Through their eyes" — an asymmetrical editorial collage of approved
- * guest photography: one large anchor plus up to three supporting images.
+ * guest photography: one large anchor plus up to four supporting images.
  * Mobile is a snap-scroll strip, tablet a balanced two-column grid, desktop
  * the full magazine-style split. Renders nothing if no approved files are
  * present yet.
@@ -114,43 +118,26 @@ export function CustomerGallery() {
         </p>
 
         <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 md:gap-6 lg:grid-cols-12">
-          <div className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:w-auto lg:col-span-8 lg:aspect-auto lg:row-span-2">
+          <div className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:aspect-[16/10] sm:w-auto sm:col-span-2 lg:col-span-12 lg:aspect-[21/9]">
             <Tile
               photo={anchor}
-              sizes="(max-width: 640px) 78vw, (max-width: 1024px) 50vw, 66vw"
+              sizes="(max-width: 640px) 78vw, (max-width: 1024px) 100vw, 92vw"
               parallax
             />
           </div>
 
-          {supporting[0] && (
-            <div className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:w-auto lg:col-span-4 lg:aspect-[4/3]">
+          {supporting.map((photo, i) => (
+            <div
+              key={photo.key}
+              className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:w-auto lg:col-span-3 lg:aspect-square"
+            >
               <Tile
-                photo={supporting[0]}
-                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 50vw, 33vw"
-                delay={0.08}
+                photo={photo}
+                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 50vw, 23vw"
+                delay={0.08 * (i + 1)}
               />
             </div>
-          )}
-
-          {supporting[1] && (
-            <div className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:w-auto lg:col-span-2 lg:aspect-square">
-              <Tile
-                photo={supporting[1]}
-                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 50vw, 17vw"
-                delay={0.16}
-              />
-            </div>
-          )}
-
-          {supporting[2] && (
-            <div className="aspect-[4/5] w-[78%] shrink-0 snap-center sm:w-auto lg:col-span-2 lg:aspect-square">
-              <Tile
-                photo={supporting[2]}
-                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 50vw, 17vw"
-                delay={0.24}
-              />
-            </div>
-          )}
+          ))}
         </div>
       </div>
     </section>

@@ -25,7 +25,7 @@ export const business = {
     { day: "Sunday", time: "9am–4pm" },
   ],
   social: {
-    instagram: "",
+    instagram: "thehanslough",
   },
 };
 
@@ -51,7 +51,9 @@ export const menuHighlights = [
 ];
 
 export const philosophy = {
-  eyebrow: "Our Philosophy",
-  heading: "Considered, not crowded.",
-  body: "The HAN was built around a single idea: a room quiet enough to think in, food honest enough to need no dressing up. Arched limewash walls, brass light, marble and cane — nothing here is loud, and that is the point.",
+  eyebrow: "Our Goal",
+  heading: "To bring good mornings to Slough.",
+  body: "The HAN is a Halal Mediterranean brunch and eatery — specialty coffee, traditional Turkish breakfast and fresh pastries, made properly and served daily from 8am. We wanted to bring Farnham Road something it didn't have yet: a room worth lingering in and food worth slowing down for.",
+  bodySecondary:
+    "Nothing on the table is rushed, and neither is the room around it — arched limewash walls, brass light, marble and cane. Good vibes, served daily.",
 };

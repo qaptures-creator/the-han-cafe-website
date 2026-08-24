@@ -36,6 +36,9 @@ export function Philosophy() {
             <p className="mt-8 max-w-lg text-base leading-[1.8] text-ink/70 md:text-lg">
               {philosophy.body}
             </p>
+            <p className="mt-5 max-w-lg text-base leading-[1.8] text-ink/70 md:text-lg">
+              {philosophy.bodySecondary}
+            </p>
           </Reveal>
 
           <Reveal delay={0.25}>
@@ -54,10 +57,10 @@ export function Philosophy() {
           <Parallax strength={30} className="aspect-[4/5] w-full rounded-sm">
             <div className="group relative h-full w-full overflow-hidden rounded-sm">
               <Photo
-                src="/images/The-HAN-Hero.png"
-                alt={`Inside ${business.name} — arched limewash wall and brass pendant lights`}
+                src="/images/The-han-storefront.png"
+                alt={`${business.name} storefront with illuminated sign on Farnham Road`}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                objectPosition="center 72%"
+                objectPosition="center"
                 className="transition-transform duration-[1400ms] ease-cinematic group-hover:scale-[1.04]"
               />
             </div>

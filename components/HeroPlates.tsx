@@ -122,7 +122,11 @@ export function HeroPlates({
           edge is visible and the plate photography stays crisp. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-b from-transparent via-cream/70 to-cream md:h-48"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-gradient-to-b from-transparent via-cream/75 to-cream md:h-52"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3 bg-cream"
       />
       {PLATES.map((plate) => (
         <Plate

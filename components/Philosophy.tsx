@@ -6,7 +6,16 @@ import { business, philosophy } from "@/lib/content";
 
 export function Philosophy() {
   return (
-    <section id="philosophy" className="bg-cream px-6 py-28 md:px-10 md:py-40">
+    <section
+      id="philosophy"
+      className="relative bg-cream px-6 py-28 md:px-10 md:py-40"
+    >
+      {/* Overlap the transformed hero by a few pixels to prevent a sub-pixel
+          seam appearing between the fade and this matching background. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-1 h-2 bg-cream"
+      />
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-[1fr_1.1fr] md:gap-20">
         <div>
           <Reveal>

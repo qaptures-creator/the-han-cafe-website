@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useTransform, type MotionValue } from "framer-motion";
 import { Photo } from "@/components/Photo";
 import { business } from "@/lib/content";
@@ -128,6 +129,28 @@ export function HeroPlates({
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3 bg-cream"
       />
+
+      {/* Mobile editorial framing: use the otherwise empty marble around the
+          dishes for a compact brand lockup and a concise venue description. */}
+      <div className="pointer-events-none absolute inset-x-0 top-[17%] z-20 flex justify-center md:hidden">
+        <Image
+          src="/images/The-han-logo.png"
+          alt=""
+          width={1448}
+          height={1086}
+          className="h-auto w-36 brightness-0"
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-[12%] z-30 px-8 text-center md:hidden">
+        <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-ink/75">
+          Halal Mediterranean brunch &amp; eatery
+        </p>
+        <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-ink/50">
+          Specialty brews · Turkish breakfast · pastries
+        </p>
+      </div>
+
       {PLATES.map((plate) => (
         <Plate
           key={plate.key}

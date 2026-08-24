@@ -11,7 +11,7 @@ import {
 import { business } from "@/lib/content";
 
 const links = [
-  { href: "#philosophy", label: "Philosophy" },
+  { href: "#philosophy", label: "Our Goal" },
   { href: "#menu", label: "Menu" },
   { href: "#gallery", label: "Gallery" },
   { href: "#visit", label: "Visit" },

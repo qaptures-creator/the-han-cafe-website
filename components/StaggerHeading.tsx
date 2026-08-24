@@ -48,7 +48,7 @@ export function StaggerHeading({ text, as: Tag = "h2", className }: StaggerHeadi
       {words.map((w, i) => (
         <span
           key={i}
-          className="inline-block overflow-hidden align-top pb-[0.08em]"
+          className="inline-block overflow-hidden align-top pb-[0.2em]"
         >
           <motion.span className="inline-block" variants={word}>
             {w}

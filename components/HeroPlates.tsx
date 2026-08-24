@@ -57,12 +57,16 @@ function Plate({
   maxRotation: number;
   maxLift: number;
 }) {
-  const rotate = useTransform(rotationProgress, [0, 1], [0, plate.direction * maxRotation]);
+  const rotate = useTransform(
+    rotationProgress,
+    [0, 1],
+    [0, plate.direction * maxRotation],
+  );
   const y = useTransform(rotationProgress, [0, 1], [0, -maxLift]);
 
   return (
     <div
-      className="absolute aspect-square"
+      className="absolute z-20 aspect-square"
       style={{
         left: `${plate.leftPct}%`,
         top: `${plate.topPct}%`,
@@ -70,7 +74,10 @@ function Plate({
         transform: "translate(-50%, -50%)",
       }}
     >
-      <motion.div style={{ rotate, y }} className="h-full w-full">
+      <motion.div
+        style={{ rotate, y }}
+        className="h-full w-full origin-center will-change-transform"
+      >
         <div className="relative h-full w-full overflow-hidden rounded-full shadow-[0_15px_35px_-15px_rgba(23,20,15,0.4)]">
           <Photo
             src={plate.src}
@@ -87,8 +94,7 @@ function Plate({
  * Reproduces the flattened hero2 composition (three dishes on marble) as a
  * static background plus three independently positioned plate elements, so
  * the marble stays perfectly still while each plate gets its own subtle
- * rotation as `rotationProgress` (the hero's own reveal progress, remapped
- * to 0-1 over roughly its 0.15-0.75 span) advances and reverses.
+ * scroll-tied rotation — impossible with a single flattened photo.
  */
 export function HeroPlates({
   rotationProgress,
@@ -99,8 +105,8 @@ export function HeroPlates({
   reduced: boolean;
   isMobile: boolean;
 }) {
-  const maxRotation = reduced ? 0 : isMobile ? 5 : 9;
-  const maxLift = reduced ? 0 : isMobile ? 4 : 6;
+  const maxRotation = reduced ? 0 : isMobile ? 6 : 9;
+  const maxLift = reduced ? 0 : isMobile ? 4 : 7;
 
   return (
     <div className="relative h-full w-full overflow-hidden">
@@ -110,6 +116,13 @@ export function HeroPlates({
         sizes="100vw"
         quality={85}
         objectPosition="center"
+      />
+      {/* Feather the marble into Philosophy's exact cream background. This
+          sits above the background but below the dishes, so no hard section
+          edge is visible and the plate photography stays crisp. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-b from-transparent via-cream/70 to-cream md:h-48"
       />
       {PLATES.map((plate) => (
         <Plate

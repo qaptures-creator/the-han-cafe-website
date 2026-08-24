@@ -55,12 +55,9 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
     ].join(" ");
   });
   const storefrontScale = useTransform(scrollYProgress, [0.15, 0.75], [1.05, 1]);
-
-  // Plate rotation rides the same reveal window as the curtain curve above
-  // (roughly 0.15-0.75 of the hero's own pin/reveal progress), so the
-  // plates start turning as they appear and settle before the sticky pin
-  // releases - never off-screen, never happening after the hero is gone.
-  const rotationProgress = useTransform(scrollYProgress, [0.15, 0.75], [0, 1]);
+  // Start the plate movement just before the dishes enter through the reveal
+  // curve, then finish it while the sticky hero is still fully on screen.
+  const plateProgress = useTransform(scrollYProgress, [0.28, 0.75], [0, 1]);
 
   return (
     <section
@@ -102,7 +99,11 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
             className="absolute inset-0"
             style={{ clipPath: "url(#hero-reveal-curve)", scale: storefrontScale }}
           >
-            <HeroPlates rotationProgress={rotationProgress} reduced={reduced} isMobile={isMobile} />
+            <HeroPlates
+              rotationProgress={plateProgress}
+              reduced={reduced}
+              isMobile={isMobile}
+            />
           </motion.div>
         )}
 

@@ -48,17 +48,17 @@ const PLATES: PlateConfig[] = [
 
 function Plate({
   plate,
-  leaveProgress,
+  rotationProgress,
   maxRotation,
   maxLift,
 }: {
   plate: PlateConfig;
-  leaveProgress: MotionValue<number>;
+  rotationProgress: MotionValue<number>;
   maxRotation: number;
   maxLift: number;
 }) {
-  const rotate = useTransform(leaveProgress, [0, 1], [0, plate.direction * maxRotation]);
-  const y = useTransform(leaveProgress, [0, 1], [0, -maxLift]);
+  const rotate = useTransform(rotationProgress, [0, 1], [0, plate.direction * maxRotation]);
+  const y = useTransform(rotationProgress, [0, 1], [0, -maxLift]);
 
   return (
     <div
@@ -87,19 +87,20 @@ function Plate({
  * Reproduces the flattened hero2 composition (three dishes on marble) as a
  * static background plus three independently positioned plate elements, so
  * the marble stays perfectly still while each plate gets its own subtle
- * scroll-tied rotation — impossible with a single flattened photo.
+ * rotation as `rotationProgress` (the hero's own reveal progress, remapped
+ * to 0-1 over roughly its 0.15-0.75 span) advances and reverses.
  */
 export function HeroPlates({
-  leaveProgress,
+  rotationProgress,
   reduced,
   isMobile,
 }: {
-  leaveProgress: MotionValue<number>;
+  rotationProgress: MotionValue<number>;
   reduced: boolean;
   isMobile: boolean;
 }) {
-  const maxRotation = reduced ? 0 : isMobile ? 4 : 6;
-  const maxLift = reduced ? 0 : isMobile ? 3 : 6;
+  const maxRotation = reduced ? 0 : isMobile ? 5 : 9;
+  const maxLift = reduced ? 0 : isMobile ? 4 : 6;
 
   return (
     <div className="relative h-full w-full overflow-hidden">
@@ -114,7 +115,7 @@ export function HeroPlates({
         <Plate
           key={plate.key}
           plate={plate}
-          leaveProgress={leaveProgress}
+          rotationProgress={rotationProgress}
           maxRotation={maxRotation}
           maxLift={maxLift}
         />

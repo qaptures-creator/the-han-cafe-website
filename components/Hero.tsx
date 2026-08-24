@@ -29,14 +29,6 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
     offset: ["start start", "end end"],
   });
 
-  // Separate progress for the plate rotation: 0 right as the sticky pin
-  // releases (the hero starts actually moving out of the viewport), 1 once
-  // it has fully scrolled away. Independent of the reveal timing above.
-  const { scrollYProgress: leaveProgress } = useScroll({
-    target: outerRef,
-    offset: ["end end", "end start"],
-  });
-
   const contentOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.22], [0, -28]);
   const legibilityOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
@@ -63,6 +55,12 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
     ].join(" ");
   });
   const storefrontScale = useTransform(scrollYProgress, [0.15, 0.75], [1.05, 1]);
+
+  // Plate rotation rides the same reveal window as the curtain curve above
+  // (roughly 0.15-0.75 of the hero's own pin/reveal progress), so the
+  // plates start turning as they appear and settle before the sticky pin
+  // releases - never off-screen, never happening after the hero is gone.
+  const rotationProgress = useTransform(scrollYProgress, [0.15, 0.75], [0, 1]);
 
   return (
     <section
@@ -104,7 +102,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
             className="absolute inset-0"
             style={{ clipPath: "url(#hero-reveal-curve)", scale: storefrontScale }}
           >
-            <HeroPlates leaveProgress={leaveProgress} reduced={reduced} isMobile={isMobile} />
+            <HeroPlates rotationProgress={rotationProgress} reduced={reduced} isMobile={isMobile} />
           </motion.div>
         )}
 

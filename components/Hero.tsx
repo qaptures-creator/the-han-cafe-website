@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { StaggerHeading } from "@/components/StaggerHeading";
-import { Photo } from "@/components/Photo";
+import { HeroInterior } from "@/components/HeroInterior";
 import { HeroPlates } from "@/components/HeroPlates";
 import { business } from "@/lib/content";
 import { useReducedMotion } from "@/lib/useReducedMotion";
@@ -81,17 +81,10 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           </svg>
         )}
 
-        {/* Base layer — the interior hero, unchanged */}
-        <div className="absolute inset-0">
-          <Photo
-            src="/images/The-HAN-Hero.png"
-            alt={`Interior of ${business.name} — arched limewash wall and brass pendant lights`}
-            sizes="100vw"
-            quality={90}
-            priority
-            objectPosition="center 38%"
-          />
-        </div>
+        {/* Base layer — the interior hero, now split into a static clean
+            background plus 4 independent lamp layers that descend into
+            place on first load. Visible crop is unchanged from before. */}
+        <HeroInterior reduced={reduced} isMobile={isMobile} />
 
         {/* Reveal layer — the second image rises over the interior like a curtain. Skipped entirely under reduced motion rather than rendered statically: unclipped, it would permanently cover the interior with no way to reveal it. */}
         {showReveal && (

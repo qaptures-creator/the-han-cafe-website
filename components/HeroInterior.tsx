@@ -34,30 +34,32 @@ type LampConfig = {
 // Bounding boxes measured directly from hero-interior-clean.png / the
 // original hero photo — the lamp PNGs are cropped to exactly these boxes,
 // so positioning them here reproduces the original composition precisely.
+// The centre lamp renders before the main one: its cord continues up behind
+// the main shade so it never shows a gap while the two travel different distances.
 const LAMPS: LampConfig[] = [
-  {
-    key: "main",
-    src: "/images/lamp-main.png",
-    alt: "",
-    left: 1095,
-    top: 0,
-    width: 756,
-    height: 452,
-    travelDesktop: 160,
-    travelMobile: 110,
-    delay: 0,
-  },
   {
     key: "centre",
     src: "/images/lamp-centre.png",
     alt: "",
     left: 1279,
-    top: 432,
-    width: 401,
-    height: 338,
+    top: 290,
+    width: 412,
+    height: 480,
     travelDesktop: 120,
     travelMobile: 85,
     delay: 0.15,
+  },
+  {
+    key: "main",
+    src: "/images/lamp-main.png",
+    alt: "",
+    left: 1086,
+    top: 0,
+    width: 775,
+    height: 452,
+    travelDesktop: 160,
+    travelMobile: 110,
+    delay: 0,
   },
   {
     key: "left",

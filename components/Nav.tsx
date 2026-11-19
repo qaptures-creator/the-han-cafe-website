@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -59,23 +58,35 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // One fixed-height logo, identical in both header states — no wrapper
-  // background, no clipping, no conditional sizing, nothing that resizes
-  // or shifts it when `solid` toggles. Only the header around it changes.
-  // Height is fixed and width follows the source image's real aspect
-  // ratio (object-contain), so the wordmark is never cropped or distorted.
+  // One fixed-height logo, identical in size in both header states. The
+  // wordmark is drawn as a mask filled with the nav's text colour, so it
+  // always matches the links: cream over the hero, ink once the header is solid.
   const brandMark =
     hasLogo && logoDimensions ? (
-      <Image
-        src="/images/The-han-logo.png"
-        alt={`${business.name} logo`}
-        width={logoDimensions.width}
-        height={logoDimensions.height}
-        priority
-        className="h-14 w-auto shrink-0 object-contain md:h-16"
+      <span
+        role="img"
+        aria-label={`${business.name} logo`}
+        className={`block h-14 shrink-0 transition-colors duration-500 md:h-16 ${
+          solid || open ? "bg-ink" : "bg-cream"
+        }`}
+        style={{
+          aspectRatio: `${logoDimensions.width} / ${logoDimensions.height}`,
+          WebkitMaskImage: "url(/images/The-han-logo.png)",
+          maskImage: "url(/images/The-han-logo.png)",
+          WebkitMaskSize: "contain",
+          maskSize: "contain",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+          WebkitMaskPosition: "center",
+          maskPosition: "center",
+        }}
       />
     ) : (
-      <span className="font-display text-lg tracking-[0.15em] text-ink">
+      <span
+        className={`font-display text-lg tracking-[0.15em] transition-colors duration-500 ${
+          solid || open ? "text-ink" : "text-cream"
+        }`}
+      >
         {business.name.toUpperCase()}
       </span>
     );
@@ -85,7 +96,7 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
       <motion.header
         initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.4, delay: 0.3, ease: [0.33, 0.6, 0.35, 1] }}
+        transition={{ duration: 1.4, ease: [0.33, 0.6, 0.35, 1] }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
           solid
             ? "border-b border-ink/10 bg-cream/90 backdrop-blur-md"

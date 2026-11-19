@@ -43,7 +43,7 @@ export const menuHighlights = [
 export const philosophy = {
   eyebrow: "Our Goal",
   heading: "To bring good mornings to Slough.",
-  body: "The HAN is a Halal Mediterranean brunch and eatery — specialty coffee, traditional Turkish breakfast and fresh pastries, made properly and served daily from 8am. We wanted to bring Farnham Road something it didn't have yet: a room worth lingering in and food worth slowing down for.",
+  body: "The HAN is a Halal Mediterranean brunch and eatery — specialty coffee, traditional Turkish breakfast and fresh pastries, made properly and served every day from 8am (9am on Sundays). We wanted to bring Farnham Road something it didn't have yet: a room worth lingering in and food worth slowing down for.",
   bodySecondary:
     "Nothing on the table is rushed, and neither is the room around it — arched limewash walls, brass light, marble and cane. Good vibes, served daily.",
 };

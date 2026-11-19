@@ -14,6 +14,9 @@ const config: Config = {
         // brass fails WCAG AA contrast there (2.77:1); this passes (5.6:1).
         bronze: "#735d3a",
         moss: "#54604a",
+        // Exact tone of the limewash plaster in our-goal-wall.webp, so the
+        // section background continues the photo seamlessly.
+        plaster: "#f6edde",
       },
       fontFamily: {
         display: ["var(--font-display)"],

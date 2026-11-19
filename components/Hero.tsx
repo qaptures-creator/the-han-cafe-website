@@ -117,7 +117,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: COPY_DURATION, delay: 0.6, ease: COPY_EASE }}
+            transition={{ duration: COPY_DURATION, delay: 0, ease: COPY_EASE }}
             className="mb-4 text-sm uppercase tracking-[0.28em] text-cream/70"
           >
             {business.category} · Farnham Road, Slough
@@ -128,7 +128,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
             text={business.name}
             duration={1.8}
             stagger={0.18}
-            delay={0.9}
+            delay={0}
             ease={COPY_EASE}
             className="font-display text-[clamp(3.25rem,9vw,7rem)] font-light italic leading-[0.95] text-cream"
           />
@@ -136,7 +136,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: COPY_DURATION, delay: 1.5, ease: COPY_EASE }}
+            transition={{ duration: COPY_DURATION, delay: 0.2, ease: COPY_EASE }}
             className="mt-6 max-w-md text-lg font-light text-cream/85"
           >
             {business.tagline}.
@@ -145,7 +145,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: COPY_DURATION, delay: 1.9, ease: COPY_EASE }}
+            transition={{ duration: COPY_DURATION, delay: 0.35, ease: COPY_EASE }}
             className="mt-10 flex items-center gap-6 text-cream/80"
           >
             <span className="text-sm tracking-[0.1em]">

@@ -59,13 +59,9 @@ export default function MenuPage() {
           <CategoryNav
             categories={menu.map((s) => ({ id: s.id, label: s.navLabel }))}
           />
-          <div className="px-6 md:px-10">
-            <div className="mx-auto max-w-6xl">
-              {menu.map((section, i) => (
-                <MenuSectionBlock key={section.id} section={section} index={i} />
-              ))}
-            </div>
-          </div>
+          {menu.map((section, i) => (
+            <MenuSectionBlock key={section.id} section={section} index={i} />
+          ))}
         </div>
         <MenuClosing />
       </main>

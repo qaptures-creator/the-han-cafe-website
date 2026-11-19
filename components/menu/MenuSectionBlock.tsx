@@ -146,9 +146,12 @@ export function MenuSectionBlock({
     <section
       id={section.id}
       aria-labelledby={headingId}
-      className="scroll-mt-32 border-t border-ink/10 py-16 first:border-t-0 md:scroll-mt-40 md:py-24"
+      // Alternating cream / warm sand bands give each category its own chapter.
+      className={`scroll-mt-32 px-6 py-16 md:scroll-mt-40 md:px-10 md:py-24 ${
+        index % 2 === 1 ? "bg-sand/40" : "bg-cream"
+      }`}
     >
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-16">
         <Reveal y={16} className="md:sticky md:top-44 md:self-start">
           <p className="mb-4 font-display text-sm italic text-bronze">
             {String(index + 1).padStart(2, "0")}

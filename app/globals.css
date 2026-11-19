@@ -79,6 +79,12 @@ body {
   transform: scaleX(1);
 }
 
+@keyframes sign-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes scrollcue {
   0% {
     transform: scaleY(0);

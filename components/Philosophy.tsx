@@ -1,48 +1,42 @@
-import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { StaggerHeading } from "@/components/StaggerHeading";
+import { SignWall } from "@/components/SignWall";
 import { business, philosophy } from "@/lib/content";
-
-const WALL = "/images/our-goal-wall.webp";
 
 const pillars = ["Halal", "Specialty coffee", "Turkish breakfast"];
 
 /**
- * The café's own arched limewash wall is the backdrop. From xl up the photo
- * fills the section (sized to its own aspect so the arch never sits under the
- * copy) and the text sits on the plain plaster to its left; below xl the arch
- * becomes a band above the text that fades into the same plaster tone.
+ * The café's backlit sign on its arched plaster wall is the backdrop, with
+ * the ring of icons around the name turning very slowly. From xl up the photo
+ * sits to the right and the copy on the plain plaster to its left; below xl
+ * the sign becomes a band above the copy that fades into the same tone.
  */
 export function Philosophy() {
   return (
     <section id="philosophy" className="relative overflow-hidden bg-plaster">
       {/* Fixed-width photo pinned right: its left half is plain plaster that
-          matches bg-plaster exactly, so the arch sits clear of the copy at any
-          height, and the cut-off base of the arch fades out downwards. */}
+          matches bg-plaster exactly, so the sign sits clear of the copy at any
+          height, and the cut-off base of the arch fades out at the bottom. */}
       <div
         aria-hidden
         className="absolute right-0 top-1/2 hidden aspect-[1672/941] w-[74vw] -translate-y-1/2 xl:block"
         style={{
-          WebkitMaskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
-          maskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, #000 30%), linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)",
+          maskImage:
+            "linear-gradient(to right, transparent, #000 30%), linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)",
+          WebkitMaskComposite: "source-in",
+          maskComposite: "intersect",
         }}
       >
-        <Image src={WALL} alt="" fill sizes="74vw" quality={90} className="object-cover" />
+        <SignWall sizes="74vw" />
       </div>
 
-      <div className="relative aspect-[4/3] w-full sm:aspect-[16/9] md:aspect-[21/9] xl:hidden">
-        <Image
-          src={WALL}
-          alt=""
-          fill
-          sizes="100vw"
-          quality={90}
-          className="object-cover"
-          style={{ objectPosition: "76% 35%" }}
-        />
+      <div className="relative aspect-square w-full sm:aspect-[4/3] md:aspect-[16/9] xl:hidden">
+        <SignWall sizes="100vw" positionX={100} positionY={60} />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-plaster/0 to-plaster"
+          className="absolute inset-x-0 bottom-0 h-[14%] bg-gradient-to-b from-plaster/0 to-plaster"
         />
       </div>
 

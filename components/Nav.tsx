@@ -18,6 +18,7 @@ const links = [
   { page: "/menu", label: "Menu" },
   { hash: "#gallery", label: "Gallery" },
   { hash: "#visit", label: "Visit" },
+  { hash: "#contact", label: "Contact" },
 ] as const;
 
 type NavProps = {

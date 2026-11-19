@@ -29,25 +29,14 @@ export const business = {
   },
 };
 
+// Homepage "On the Table" teaser. Each entry points at a real dish in
+// lib/menu.ts (section id + exact item name) so names, descriptions and
+// prices always come from the menu itself — a stale reference fails the build.
 export const menuHighlights = [
-  {
-    title: "Avocado & Poached Egg",
-    description:
-      "Sourdough, whipped avocado, soft poached egg, cherry tomato, toasted seeds, microgreens.",
-    tag: "Signature",
-  },
-  {
-    title: "Specialty Coffee",
-    description:
-      "Slow-poured filter and espresso, sourced and brewed with the same care as the room around it.",
-    tag: "All day",
-  },
-  {
-    title: "Fresh Pastry",
-    description:
-      "A short, changing selection made in small batches through the morning.",
-    tag: "Morning",
-  },
+  { section: "serpme", item: "Serpme", tag: "Turkish breakfast" },
+  { section: "brunch", item: "Turkish Eggs", tag: "Brunch" },
+  { section: "brunch", item: "Sucuk Benedict", tag: "Brunch" },
+  { section: "lunch", item: "Lamb Chops", tag: "Lunch" },
 ];
 
 export const philosophy = {

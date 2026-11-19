@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   motion,
   AnimatePresence,
@@ -10,12 +12,13 @@ import {
 } from "framer-motion";
 import { business } from "@/lib/content";
 
+// `hash` links point at homepage sections; `page` links are routes.
 const links = [
-  { href: "#philosophy", label: "Our Goal" },
-  { href: "#menu", label: "Menu" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#visit", label: "Visit" },
-];
+  { hash: "#philosophy", label: "Our Goal" },
+  { page: "/menu", label: "Menu" },
+  { hash: "#gallery", label: "Gallery" },
+  { hash: "#visit", label: "Visit" },
+] as const;
 
 type NavProps = {
   hasLogo: boolean;
@@ -23,11 +26,23 @@ type NavProps = {
 };
 
 export function Nav({ hasLogo, logoDimensions }: NavProps) {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  // On the homepage, section links stay in-page anchors; from any other
+  // route they go back to the homepage section.
+  const resolved = links.map((link) =>
+    "page" in link
+      ? { href: link.page, label: link.label, isPage: true, current: pathname === link.page }
+      : { href: onHome ? link.hash : `/${link.hash}`, label: link.label, isPage: false, current: false }
+  );
   const { scrollY } = useScroll();
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  // Only the homepage has a full-bleed hero behind a transparent header;
+  // every other route starts with the solid (cream) header.
+  const solid = scrolled || !onHome;
   const [open, setOpen] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => setSolid(latest > 80));
+  useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 80));
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -77,23 +92,38 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
         }`}
       >
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6 md:h-20 md:px-10">
-          <a href="#top" className="shrink-0" onClick={() => setOpen(false)}>
+          <a
+            href={onHome ? "#top" : "/"}
+            aria-label={onHome ? undefined : `${business.name} home`}
+            className="shrink-0"
+            onClick={() => setOpen(false)}
+          >
             {brandMark}
           </a>
 
           <ul className="hidden shrink-0 items-center gap-7 whitespace-nowrap lg:flex xl:gap-9">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className={`underline-grow text-sm uppercase tracking-[0.15em] transition-colors ${
-                    solid ? "text-ink/80 hover:text-ink" : "text-cream/85 hover:text-cream"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {resolved.map((link) => {
+              const className = `underline-grow text-sm uppercase tracking-[0.15em] transition-colors ${
+                solid ? "text-ink/80 hover:text-ink" : "text-cream/85 hover:text-cream"
+              }`;
+              return (
+                <li key={link.href}>
+                  {link.isPage ? (
+                    <Link
+                      href={link.href}
+                      aria-current={link.current ? "page" : undefined}
+                      className={className}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className={className}>
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           <div className="flex shrink-0 items-center gap-5">
@@ -159,15 +189,26 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
             className="fixed inset-x-0 top-16 z-40 border-b border-ink/10 bg-cream px-6 pb-10 pt-8 shadow-[0_20px_50px_-20px_rgba(23,20,15,0.25)] md:top-20 lg:hidden"
           >
             <ul>
-              {links.map((link) => (
+              {resolved.map((link) => (
                 <li key={link.href} className="border-b border-ink/10">
-                  <a
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-4 font-display text-2xl font-light italic text-ink"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isPage ? (
+                    <Link
+                      href={link.href}
+                      aria-current={link.current ? "page" : undefined}
+                      onClick={() => setOpen(false)}
+                      className="block py-4 font-display text-2xl font-light italic text-ink"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="block py-4 font-display text-2xl font-light italic text-ink"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

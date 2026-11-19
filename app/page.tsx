@@ -7,6 +7,7 @@ import { Gallery } from "@/components/Gallery";
 import { GuestReviews } from "@/components/GuestReviews";
 import { CustomerGallery } from "@/components/CustomerGallery";
 import { Visit } from "@/components/Visit";
+import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { assetExists, getPngDimensions } from "@/lib/imageMeta";
 
@@ -28,6 +29,7 @@ export default function Home() {
         <GuestReviews />
         <CustomerGallery />
         <Visit />
+        <Contact />
       </main>
       <Footer hasLogo={hasLogo} logoDimensions={logoDimensions} />
     </>

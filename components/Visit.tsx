@@ -47,6 +47,16 @@ export function Visit() {
                 <HoursList />
               </div>
 
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Email</p>
+                <a
+                  href={`mailto:${business.email}`}
+                  className="underline-grow mt-2 inline-block break-all text-lg font-light"
+                >
+                  {business.email}
+                </a>
+              </div>
+
               {business.phone && (
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Phone</p>

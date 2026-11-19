@@ -15,6 +15,7 @@ export const business = {
   },
   // TODO: confirm phone number and add here once available.
   phone: "",
+  email: "thehanslough@gmail.com",
   hours: [
     { day: "Monday", time: "8am–5pm" },
     { day: "Tuesday", time: "8am–5pm" },

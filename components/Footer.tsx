@@ -23,9 +23,14 @@ export function Footer({ hasLogo, logoDimensions }: FooterProps) {
             <p className="font-display text-base italic text-ink">{business.name}</p>
           )}
 
-          <p className="text-sm text-ink/60">
-            {business.address.line1}, {business.address.line2}
-          </p>
+          <div className="space-y-1 text-sm text-ink/60">
+            <p>
+              {business.address.line1}, {business.address.line2}
+            </p>
+            <a href={`mailto:${business.email}`} className="underline-grow inline-block">
+              {business.email}
+            </a>
+          </div>
 
           <a
             href="#top"

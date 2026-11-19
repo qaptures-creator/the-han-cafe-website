@@ -47,7 +47,7 @@ const LAMPS: LampConfig[] = [
     height: 480,
     travelDesktop: 120,
     travelMobile: 85,
-    delay: 0.15,
+    delay: 0.25,
   },
   {
     key: "main",
@@ -71,7 +71,7 @@ const LAMPS: LampConfig[] = [
     height: 175,
     travelDesktop: 90,
     travelMobile: 65,
-    delay: 0.3,
+    delay: 0.5,
   },
   {
     key: "right",
@@ -83,12 +83,13 @@ const LAMPS: LampConfig[] = [
     height: 138,
     travelDesktop: 90,
     travelMobile: 65,
-    delay: 0.3,
+    delay: 0.5,
   },
 ];
 
-const DURATION = 2.2;
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const DURATION = 3.6;
+// Gentler than an expo ease-out, so the lamps glide down instead of dropping and braking.
+const EASE: [number, number, number, number] = [0.33, 0.6, 0.35, 1];
 
 function Lamp({
   lamp,

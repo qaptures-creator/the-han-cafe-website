@@ -69,7 +69,7 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
       <motion.header
         initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.4, delay: 0.3, ease: [0.33, 0.6, 0.35, 1] }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
           solid
             ? "border-b border-ink/10 bg-cream/90 backdrop-blur-md"

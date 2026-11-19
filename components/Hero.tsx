@@ -18,6 +18,10 @@ import { useIsMobile } from "@/lib/useIsMobile";
  * `hasHero2` is true; otherwise this collapses back to a plain,
  * non-pinned single-image hero (the outer container is exactly 100svh).
  */
+// Slow, gentle reveal for the hero copy so it settles alongside the descending lamps.
+const COPY_EASE: [number, number, number, number] = [0.33, 0.6, 0.35, 1];
+const COPY_DURATION = 1.6;
+
 export function Hero({ hasHero2 }: { hasHero2: boolean }) {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
@@ -113,7 +117,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: COPY_DURATION, delay: 0.6, ease: COPY_EASE }}
             className="mb-4 text-sm uppercase tracking-[0.28em] text-cream/70"
           >
             {business.category} · Farnham Road, Slough
@@ -122,13 +126,17 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <StaggerHeading
             as="h1"
             text={business.name}
+            duration={1.8}
+            stagger={0.18}
+            delay={0.9}
+            ease={COPY_EASE}
             className="font-display text-[clamp(3.25rem,9vw,7rem)] font-light italic leading-[0.95] text-cream"
           />
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: COPY_DURATION, delay: 1.5, ease: COPY_EASE }}
             className="mt-6 max-w-md text-lg font-light text-cream/85"
           >
             {business.tagline}.
@@ -137,7 +145,7 @@ export function Hero({ hasHero2 }: { hasHero2: boolean }) {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: COPY_DURATION, delay: 1.9, ease: COPY_EASE }}
             className="mt-10 flex items-center gap-6 text-cream/80"
           >
             <span className="text-sm tracking-[0.1em]">

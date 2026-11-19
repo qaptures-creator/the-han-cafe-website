@@ -143,11 +143,22 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
               href={business.address.mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className={`underline-grow hidden whitespace-nowrap text-sm uppercase tracking-[0.15em] lg:inline-block ${
+              className={`underline-grow hidden whitespace-nowrap text-sm uppercase tracking-[0.15em] xl:inline-block ${
                 solid ? "text-ink" : "text-cream"
               }`}
             >
               Directions
+            </a>
+
+            <a
+              href={onHome ? "#book" : "/#book"}
+              className={`hidden whitespace-nowrap border px-5 py-2.5 text-sm uppercase tracking-[0.15em] transition-colors duration-300 lg:inline-block ${
+                solid
+                  ? "border-ink/70 text-ink hover:bg-ink hover:text-cream"
+                  : "border-cream/70 text-cream hover:bg-cream hover:text-ink"
+              }`}
+            >
+              Book a table
             </a>
 
             <button
@@ -224,15 +235,24 @@ export function Nav({ hasLogo, logoDimensions }: NavProps) {
                 </li>
               ))}
             </ul>
-            <a
-              href={business.address.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setOpen(false)}
-              className="mt-8 inline-block text-sm uppercase tracking-[0.2em] text-bronze"
-            >
-              Get Directions →
-            </a>
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+              <a
+                href={onHome ? "#book" : "/#book"}
+                onClick={() => setOpen(false)}
+                className="inline-block text-sm uppercase tracking-[0.2em] text-bronze"
+              >
+                Book a table →
+              </a>
+              <a
+                href={business.address.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-block text-sm uppercase tracking-[0.2em] text-bronze"
+              >
+                Get Directions →
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

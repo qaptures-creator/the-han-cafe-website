@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { StaggerHeading } from "@/components/StaggerHeading";
 import { HoursList } from "@/components/HoursList";
+import { BookingPanel } from "@/components/BookingPanel";
 import { business } from "@/lib/content";
 
 export function Visit() {
@@ -23,6 +24,12 @@ export function Visit() {
         />
 
         <div className="grid grid-cols-1 border border-cream/15 md:grid-cols-2">
+          <Reveal className="border-b border-cream/15 md:col-span-2">
+            <div id="book" className="scroll-mt-24 p-8 md:scroll-mt-28 md:p-14">
+              <BookingPanel />
+            </div>
+          </Reveal>
+
           <Reveal className="border-b border-cream/15 p-8 md:border-b-0 md:border-r md:p-14">
             <div className="space-y-10">
               <div>

@@ -30,6 +30,41 @@ export const business = {
   },
 };
 
+// Table booking panel in the Visit section (components/BookingPanel.tsx).
+// Dates and time slots are derived from `business.hours` above — change the
+// hours there and the booking options follow automatically.
+export const booking = {
+  // OpenTable restaurant ID ("rid"). LEAVE EMPTY until The HAN is live on
+  // OpenTable. While empty, the panel sends a booking REQUEST by email
+  // (FormSubmit → business.email) that the café confirms by hand.
+  // Once set, the same panel hands guests to OpenTable's booking page
+  // (opentable.co.uk), pre-filled with their date, time and party size.
+  //
+  // Where to find it — digits only (e.g. "123456"), never a URL:
+  //   • Log in to OpenTable for Restaurants and open the reservation widget
+  //     page (Restaurant Profile / Marketing → "Reservation widget"). The
+  //     embed code it gives you contains `rid=123456` — copy those digits.
+  //   • The Restaurant ID is also shown next to the restaurant's name in the
+  //     OpenTable dashboard, or OpenTable support can tell you.
+  opentableRid: "",
+  // OpenTable site the hand-off goes to: "co.uk" for UK restaurants.
+  opentableDomain: "co.uk",
+  // OpenTable page language.
+  opentableLang: "en-GB",
+  // All "today" / past-slot logic uses UK time, wherever the visitor is.
+  timeZone: "Europe/London",
+  // Gap between bookable times, in minutes.
+  slotMinutes: 30,
+  // Latest booking time = closing time minus this many minutes.
+  lastBookingBeforeCloseMinutes: 60,
+  // Same-day slots must be at least this far in the future.
+  minNoticeMinutes: 30,
+  // Largest party bookable online; bigger groups are pointed to #contact.
+  maxPartySize: 10,
+  // How far ahead guests can book, in days (today counts as day 0).
+  maxDaysAhead: 60,
+};
+
 // Homepage "On the Table" teaser. Each entry points at a real dish in
 // lib/menu.ts (section id + exact item name) so names, descriptions and
 // prices always come from the menu itself — a stale reference fails the build.

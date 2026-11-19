@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { business } from "@/lib/content";
+import { londonNow } from "@/lib/booking";
 
 const dayNames = [
   "Sunday",
@@ -13,12 +14,12 @@ const dayNames = [
   "Saturday",
 ];
 
-/** Highlights today's row client-side — the page is statically prerendered, so "today" can only be known in the browser. */
+/** Highlights today's row (UK time) client-side — the page is statically prerendered, so "today" can only be known in the browser. */
 export function HoursList() {
   const [today, setToday] = useState<string | null>(null);
 
   useEffect(() => {
-    setToday(dayNames[new Date().getDay()]);
+    setToday(dayNames[londonNow().weekday]);
   }, []);
 
   return (

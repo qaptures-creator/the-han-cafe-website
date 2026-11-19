@@ -37,6 +37,21 @@ One thing is still marked `TODO` there and needs confirming:
 - Phone number (not shown on the source listing — the Visit section hides
   the phone row entirely until this is filled in).
 
+## Table booking
+
+The "Book a table" panel at the top of the Visit section (`#book`, also linked
+from the nav) is configured by `booking` in `lib/content.ts`. Time slots are
+derived from `business.hours` (UK time), so changing the hours updates them.
+
+- **Today (`opentableRid: ""`)** — guests pick date, time and party size and
+  send a booking *request* by email via FormSubmit (same inbox as the contact
+  form). The café replies to confirm; nothing is booked automatically.
+- **Once on OpenTable** — paste the numeric Restaurant ID into
+  `booking.opentableRid` and redeploy. The same panel then opens OpenTable's
+  UK booking page in a new tab, pre-filled with the guest's choices (the same
+  `/booking/restref/availability` link OpenTable's own widget uses), and the
+  name/email fields disappear.
+
 ## Image quality notes
 
 - All photos render through `components/Photo.tsx`, a thin `next/image`
